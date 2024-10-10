@@ -132,9 +132,13 @@ func convertWorkspaceGeneralSettingFromStore(setting *storepb.WorkspaceGeneralSe
 		return nil
 	}
 	generalSetting := &v1pb.WorkspaceGeneralSetting{
-		AdditionalScript:   setting.AdditionalScript,
-		AdditionalStyle:    setting.AdditionalStyle,
-		WeekStartDayOffset: setting.WeekStartDayOffset,
+		DisallowUserRegistration: setting.DisallowUserRegistration,
+		DisallowPasswordAuth:     setting.DisallowPasswordAuth,
+		AdditionalScript:         setting.AdditionalScript,
+		AdditionalStyle:          setting.AdditionalStyle,
+		WeekStartDayOffset:       setting.WeekStartDayOffset,
+		DisallowChangeUsername:   setting.DisallowChangeUsername,
+		DisallowChangeNickname:   setting.DisallowChangeNickname,
 	}
 	if setting.CustomProfile != nil {
 		generalSetting.CustomProfile = &v1pb.WorkspaceCustomProfile{
@@ -153,9 +157,13 @@ func convertWorkspaceGeneralSettingToStore(setting *v1pb.WorkspaceGeneralSetting
 		return nil
 	}
 	generalSetting := &storepb.WorkspaceGeneralSetting{
-		AdditionalScript:   setting.AdditionalScript,
-		AdditionalStyle:    setting.AdditionalStyle,
-		WeekStartDayOffset: setting.WeekStartDayOffset,
+		DisallowUserRegistration: setting.DisallowUserRegistration,
+		DisallowPasswordAuth:     setting.DisallowPasswordAuth,
+		AdditionalScript:         setting.AdditionalScript,
+		AdditionalStyle:          setting.AdditionalStyle,
+		WeekStartDayOffset:       setting.WeekStartDayOffset,
+		DisallowChangeUsername:   setting.DisallowChangeUsername,
+		DisallowChangeNickname:   setting.DisallowChangeNickname,
 	}
 	if setting.CustomProfile != nil {
 		generalSetting.CustomProfile = &storepb.WorkspaceCustomProfile{
@@ -223,6 +231,9 @@ func convertWorkspaceMemoRelatedSettingFromStore(setting *storepb.WorkspaceMemoR
 		EnableDoubleClickEdit:    setting.EnableDoubleClickEdit,
 		EnableLinkPreview:        setting.EnableLinkPreview,
 		EnableComment:            setting.EnableComment,
+		EnableLocation:           setting.EnableLocation,
+		DefaultVisibility:        setting.DefaultVisibility,
+		Reactions:                setting.Reactions,
 	}
 }
 
@@ -238,5 +249,8 @@ func convertWorkspaceMemoRelatedSettingToStore(setting *v1pb.WorkspaceMemoRelate
 		EnableDoubleClickEdit:    setting.EnableDoubleClickEdit,
 		EnableLinkPreview:        setting.EnableLinkPreview,
 		EnableComment:            setting.EnableComment,
+		EnableLocation:           setting.EnableLocation,
+		DefaultVisibility:        setting.DefaultVisibility,
+		Reactions:                setting.Reactions,
 	}
 }
